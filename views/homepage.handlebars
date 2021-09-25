@@ -1,3 +1,16 @@
-<div>
-  {{!-- insert homepage html here --}}
+<!-- Displaying Posts -->
+
+{{#each posts as |post| }}
+<div class="row mb-4">
+  <div class="col-md-5">
+    <h2>
+      <a href="/post/{{post.id}}">{{post.title}}</a>
+    </h2>
+    <p>{{post.user.username}},{{format_date post.created}}</p>
+    <p>
+      {{post.content}}
+    </p>
+  </div>
 </div>
+{{/each}}
+
