@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// route to regist a user
+// route to register a user
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -37,7 +37,6 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
@@ -49,6 +48,26 @@ router.post('/login', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+// route to display members of a group to the group partial
+
+router.get('/', async (req, res) => {
+  try {
+    const userData = await User.findAll(
+        // insert here
+    );
+
+    const users = userData.map((user) => user.get({ plain: true }));
+
+    res.render('group-members', {
+      ...users,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 // route to logout
 router.post('/logout', (req, res) => {

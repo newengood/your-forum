@@ -1,5 +1,18 @@
 <div>
-  {{!-- insert dashboard html here --}}
+  {{!-- render dashboard invites partial --}}
+  {{#each user.invitations as |invite}}
+  {{> dashboard-invitations}}
+  {{/each}}
+
+  {{!-- render dashboard groups partial --}}
+  {{#each user.groups as |group}}
+  {{> dashboard-groups}}
+  {{/each}}
+
+  {{!-- render dashboard posts partial --}}
+  {{#each user.posts as |post}}
+  {{> dashboard-posts}}
+  {{/each}}
 </div>
 
 <script src="./js/dashboard.js"></script>

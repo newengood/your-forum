@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const { Group } = require('../models');
+const { Group, Post, User, Invitation } = require('../models');
 const withAuth = require('../utils/auth');
 
-// get route for public groups
+// get route for public groups on homepage
+
 router.get('/', async (req, res) => {
   try {
     const groupData = await Group.findAll({
@@ -22,31 +23,23 @@ router.get('/', async (req, res) => {
   }
 });
 
-// get route for when group is selected
-router.get('/group/:id', async (req, res) => {
-  try {
-    const groupData = await Group.findByPk(req.params.id, {
-    //insert here
-    });
-
-    const group = groupData.get({ plain: true });
-
-    res.render('group', {
-      ...project,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 // Route to access dashboard tab in nav
+
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
+      include: [
+        {
+          model: Invitation
+        },
+        {
+          model: Group
+        },
+        {
+          model: Post
+        }
+      ],
     });
 
     const user = userData.get({ plain: true });

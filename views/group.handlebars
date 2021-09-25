@@ -1,3 +1,16 @@
 <div>
-  {{!-- insert group page html here --}}
-</div>>
+  {{!-- render group members partial --}}
+  {{#each group.member as |member}}
+  {{> group-members}}
+  {{/each}}
+
+  {{!-- render group topics partial --}}
+  {{#each group.topic as |topic}}
+  {{> group-topics}}
+  {{/each}}
+
+  {{!-- render group posts partial --}}
+  {{#each group.post as |post}}
+  {{> group-posts}}
+  {{/each}}
+</div>

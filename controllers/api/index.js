@@ -1,9 +1,16 @@
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
 const groupRoutes = require('./groupRoutes');
+const invitationRoutes = require('./invitationRoutes');
+const topicRoutes = require('./topicRoutes');
+const postRoutes = require('./postRoutes');
+const commentRoutes = require('./commentRoutes');
 
 router.use('/users', userRoutes);
-router.use('/grups', groupRoutes);
-// insert routes here: categories? posts?
+router.use('/groups', groupRoutes);
+router.use('/invitations', invitationRoutes);
+router.use('/topics', topicRoutes);
+router.use('/posts', postRoutes);
+router.use('/comments', commentRoutes);
 
 module.exports = router;
