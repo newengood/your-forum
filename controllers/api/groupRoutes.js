@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Group, User, Topic, Post } = require('../../models');
+const { Group, User, Topic, Post, UserGroup } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 

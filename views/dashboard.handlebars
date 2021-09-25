@@ -1,18 +1,48 @@
-<div>
-  {{!-- render dashboard invites partial --}}
-  {{#each user.invitations as |invite}}
-  {{> dashboard-invitations}}
-  {{/each}}
+{{!-- insert dashboard html here --}}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Notifications</h2>
+      {{#each user.invitations as |invitation| }}
+      <div class="row mb-4">
+        <div class="col-md-5">
+          <h4>
+            <a href="/invitations/{{invitation.id}}">{{invitation.group_id}}</a>
+          </h4>
+          <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Accept Invite</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="col-6">
+      <h2>Your Posts</h2>
+      {{#each user.posts as |post| }}
+      <div class="row mb-4">
+        <div class="col-md-5">
+          <h4>
+            <a href="/post/{{post.id}}">{{post.title}}</a>
+          </h4>
+          <p>{{format_date post.created}}</p>
+          <p>
+            {{post.content}}
+          </p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="col">
+      <h2>Your Groups</h2>
+      {{#each user.groups as |group| }}
+      <div class="row mb-4">
+        <div class="col-md-5">
 
-  {{!-- render dashboard groups partial --}}
-  {{#each user.groups as |group}}
-  {{> dashboard-groups}}
-  {{/each}}
-
-  {{!-- render dashboard posts partial --}}
-  {{#each user.posts as |post}}
-  {{> dashboard-posts}}
-  {{/each}}
+          <button type="button" class="btn btn-primary btn-lg btn-block"><a class="text-white"
+              href="/groups/{{group.id}}">{{group.name}}</a></button>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
 </div>
 
 <script src="./js/dashboard.js"></script>

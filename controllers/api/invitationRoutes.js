@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Invtation } = require('../../models');
+const { Invitation } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // route to display all invitaions on dashboard-invitations partial

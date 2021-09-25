@@ -1,16 +1,42 @@
-<div>
-  {{!-- render group members partial --}}
-  {{#each group.member as |member}}
-  {{> group-members}}
-  {{/each}}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Members</h2>
+       {{#each group.user as |user|}}
+      <div class="row mb-4">
+        <div class="col-md-5">
+          <h4>
+            <a href="/users/{{user.id}}">{{user.username}}</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="col-6">
+      <h2>Group Topics</h2>
+      {{#each group.topic as |topic| }}
+      <div class="row mb-4">
+        <div class="col-md-5">
+          <h4>
+            <a href="/topics/{{topic.id}}">{{topic.name}}</a>
+          </h4>
+          <p>
+            {{topic.name}}
+          </p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="col">
+      <h2>Topic Posts</h2>
+      {{#each user.post as |post| }}
+      <div class="row mb-4">
+        <div class="col-md-5">
 
-  {{!-- render group topics partial --}}
-  {{#each group.topic as |topic}}
-  {{> group-topics}}
-  {{/each}}
-
-  {{!-- render group posts partial --}}
-  {{#each group.post as |post}}
-  {{> group-posts}}
-  {{/each}}
+          <button type="button" class="btn btn-primary btn-lg btn-block"><a class="text-white"
+              href="/posts/{{post.id}}">{{post.title}}</a></button>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
 </div>
