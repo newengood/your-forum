@@ -13,6 +13,7 @@ const Invitation = require('./Invitation');
     A group belongs to a single user. */
 User.hasMany(Group, {
 	foreignKey: 'user_id',
+	onDelete: 'SET NULL', // If a user is deleted, don't delete groups they've created.
 });
 Group.belongsTo(User, {
 	foreignKey: 'user_id',
@@ -45,6 +46,7 @@ Topic.belongsTo(Group, {
     A post belongs to a single topic. */
 Topic.hasMany(Post, {
 	foreignKey: 'topic_id',
+	onDelete: 'SET NULL', // If a topic is deleted, don't delete posts in that topic.
 });
 Post.belongsTo(Topic, {
 	foreignKey: 'topic_id',
@@ -55,6 +57,7 @@ Post.belongsTo(Topic, {
     A comment belongs to a single post. */
 Post.hasMany(Comment, {
 	foreignKey: 'post_id',
+	onDelete: 'SET NULL', // If a post is deleted, don't delete comments made to that post.
 });
 Comment.belongsTo(Post, {
 	foreignKey: 'post_id',
