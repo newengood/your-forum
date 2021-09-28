@@ -1,37 +1,36 @@
 const router = require('express').Router();
-const { Post, Topic, Group, User } = require('../../models');
+const { UserGroup, Group, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-/* route to create a new post
-  Request: { title, content, topic_id } */
+/* route to create a UserGroup (membership)
+  Request: { user_id, group_id } */
 router.post('/', withAuth, async (req, res) => {
 	try {
-		const newPost = await Post.create({
-			...req.body,
-			user_id: req.session.user_id,
-		});
+		const newUserGroup = await UserGroup.create(req.body);
 
-		res.status(200).json(newPost);
+		res.status(200).json(newUserGroup);
 	} catch (err) {
 		res.status(400).json(err);
 	}
 });
 
-// route to delete post
+// route to delete a UserGroup
 router.delete('/:id', withAuth, async (req, res) => {
 	try {
-		const postData = await Post.destroy({
+		const userGroupData = await UserGroup.destroy({
 			where: {
 				id: req.params.id,
 				user_id: req.session.user_id,
 			},
 		});
 
-		if (!postData) {
-			return res.status(404).json({ message: 'No post found with this id!' });
+		if (!userGroupData) {
+			return res
+				.status(404)
+				.json({ message: 'No user group found with this id!' });
 		}
 
-		res.status(200).json(postData);
+		res.status(200).json(userGroupData);
 	} catch (err) {
 		res.status(500).json(err);
 	}
@@ -40,9 +39,9 @@ router.delete('/:id', withAuth, async (req, res) => {
 // API TEST ROUTES (no Auth middleware or session dependencies...)
 router.post('/test', async (req, res) => {
 	try {
-		const newPost = await Post.create(req.body);
+		const newUserGroup = await UserGroup.create(req.body);
 
-		res.status(200).json(newPost);
+		res.status(200).json(newUserGroup);
 	} catch (err) {
 		res.status(400).json(err);
 	}
@@ -50,11 +49,9 @@ router.post('/test', async (req, res) => {
 
 router.get('/test', async (req, res) => {
 	try {
-		const posts = await Post.findAll({
-			include: { all: true },
-		});
+		const userGroups = await UserGroup.findAll();
 
-		res.status(200).json(posts);
+		res.status(200).json(userGroups);
 	} catch (err) {
 		res.status(400).json(err);
 	}
@@ -62,17 +59,19 @@ router.get('/test', async (req, res) => {
 
 router.delete('/test/:id', async (req, res) => {
 	try {
-		const postData = await Post.destroy({
+		const userGroupData = await UserGroup.destroy({
 			where: {
 				id: req.params.id,
 			},
 		});
 
-		if (!postData) {
-			return res.status(404).json({ message: 'No post found with this id!' });
+		if (!userGroupData) {
+			return res
+				.status(404)
+				.json({ message: 'No user group found with this id!' });
 		}
 
-		res.status(200).json(postData);
+		res.status(200).json(userGroupData);
 	} catch (err) {
 		res.status(500).json(err);
 	}

@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Dogs",
+		"group_id": 1
+	},
+	{
+		"name": "Cats",
+		"group_id": 1
+	},
+	{
+		"name": "Luxury",
+		"group_id": 2
+	},
+	{
+		"name": "Exotic",
+		"group_id": 2
+	},
+	{
+		"name": "Football",
+		"group_id": 3
+	},
+	{
+		"name": "Hockey",
+		"group_id": 3
+	}
+]

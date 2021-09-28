@@ -1,6 +1,14 @@
-
 [
-  {
-    "name": "Example Group"
-  }
+	{
+		"name": "Animals",
+		"user_id": 1
+	},
+	{
+		"name": "Cars",
+		"user_id": 2
+	},
+	{
+		"name": "Sports",
+		"user_id": 3
+	}
 ]

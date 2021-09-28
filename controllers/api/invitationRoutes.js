@@ -72,14 +72,7 @@ router.post('/test', async ({ body }, res) => {
 router.get('/test', async (req, res) => {
 	try {
 		const invitations = await Invitation.findAll({
-			include: [
-				{
-					model: User,
-				},
-				{
-					model: Group,
-				},
-			],
+			include: { all: true },
 		});
 
 		res.status(200).json(invitations);

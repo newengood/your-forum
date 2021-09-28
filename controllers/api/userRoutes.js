@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Invitation, Group, UserGroup } = require('../../models');
 
 /* route to register a new user
   Request: { username, email, password } */
@@ -63,7 +63,22 @@ router.post('/logout', (req, res) => {
 // API TEST ROUTES
 router.get('/test', async (req, res) => {
 	try {
-		const users = await User.findAll();
+		const users = await User.findAll({
+			include: [
+				{
+					all: true,
+				},
+				{
+					model: Invitation,
+					include: [
+						{
+							model: Group,
+							attributes: ['name'],
+						},
+					],
+				},
+			],
+		});
 
 		res.status(200).json(users);
 	} catch (err) {

@@ -24,10 +24,12 @@ Group.belongsTo(User, {
     A group can have many users. */
 User.belongsToMany(Group, {
 	through: UserGroup,
+	as: 'memberships',
 	foreignKey: 'user_id',
 });
 Group.belongsToMany(User, {
 	through: UserGroup,
+	as: 'memberships',
 	foreignKey: 'group_id',
 });
 

@@ -53,24 +53,7 @@ router.post('/test', async (req, res) => {
 router.get('/test', async (req, res) => {
 	try {
 		const comments = await Comment.findAll({
-			include: [
-				{
-					model: User,
-				},
-				{
-					model: Post,
-					include: [
-						{
-							model: Topic,
-							include: [
-								{
-									model: Group,
-								},
-							],
-						},
-					],
-				},
-			],
+			include: { all: true },
 		});
 
 		res.status(200).json(comments);

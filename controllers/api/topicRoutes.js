@@ -47,7 +47,7 @@ router.post('/test', async (req, res) => {
 router.get('/test', async (req, res) => {
 	try {
 		const topics = await Topic.findAll({
-			include: [Group],
+			include: { all: true },
 		});
 
 		res.status(200).json(topics);

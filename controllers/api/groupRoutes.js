@@ -51,7 +51,7 @@ router.post('/test', async (req, res) => {
 router.get('/test', async (req, res) => {
 	try {
 		const groups = await Group.findAll({
-			include: [User],
+			include: { all: true },
 		});
 
 		res.status(200).json(groups);
