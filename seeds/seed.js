@@ -2,27 +2,40 @@
 // note!!: needs to be changed with model considerations
 
 const sequelize = require('../config/connection');
-const { User, Group} = require('../models');
+const {
+	User,
+	Group,
+	UserGroup,
+	Topic,
+	Post,
+	Comment,
+	Invitation,
+} = require('../models');
 
 const userData = require('./userData.json');
 const groupData = require('./groupData.json');
+const topicData = require('./topicData.json');
+const postData = require('./postData.json');
+const commentData = require('./commentData.json');
+const userGroupData = require('./userGroupData.json');
+const invitationData = require('./invitationData.json');
 
 const seedDatabase = async () => {
-  await sequelize.sync({ force: true });
+	await sequelize.sync({ force: true });
 
-  const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
+	await User.bulkCreate(userData, {
+		individualHooks: true,
+		returning: true,
+	});
 
-  for (const group of groupData) {
-    await Group.create({
-      ...group,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  }
+	await Group.bulkCreate(groupData);
+	await Topic.bulkCreate(topicData);
+	await Post.bulkCreate(postData);
+	await Comment.bulkCreate(commentData);
+	await UserGroup.bulkCreate(userGroupData);
+	await Invitation.bulkCreate(invitationData);
 
-  process.exit(0);
+	process.exit(0);
 };
 
 seedDatabase();

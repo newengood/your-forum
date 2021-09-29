@@ -1,37 +1,39 @@
 const router = require('express').Router();
-const { Group, User } = require('../../models');
+const { Comment, User, Post, Topic, Group } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-/* route to create group
-  Request: { name } */
+/* route to create a new comment
+  Request: { text, post_id } */
 router.post('/', withAuth, async (req, res) => {
 	try {
-		const newGroup = await Group.create({
+		const newComment = await Comment.create({
 			...req.body,
 			user_id: req.session.user_id,
 		});
 
-		res.status(200).json(newGroup);
+		res.status(200).json(newComment);
 	} catch (err) {
 		res.status(400).json(err);
 	}
 });
 
-// route to delete group
+// route to delete comment
 router.delete('/:id', withAuth, async (req, res) => {
 	try {
-		const groupData = await Group.destroy({
+		const commentData = await Comment.destroy({
 			where: {
 				id: req.params.id,
 				user_id: req.session.user_id,
 			},
 		});
 
-		if (!groupData) {
-			return res.status(404).json({ message: 'No group found with this id!' });
+		if (!commentData) {
+			return res
+				.status(404)
+				.json({ message: 'No comment found with this id!' });
 		}
 
-		res.status(200).json(groupData);
+		res.status(200).json(commentData);
 	} catch (err) {
 		res.status(500).json(err);
 	}
@@ -40,9 +42,9 @@ router.delete('/:id', withAuth, async (req, res) => {
 // API TEST ROUTES (no Auth middleware or session dependencies...)
 router.post('/test', async (req, res) => {
 	try {
-		const newGroup = await Group.create(req.body);
+		const newComment = await Comment.create(req.body);
 
-		res.status(200).json(newGroup);
+		res.status(200).json(newComment);
 	} catch (err) {
 		res.status(400).json(err);
 	}
@@ -50,11 +52,11 @@ router.post('/test', async (req, res) => {
 
 router.get('/test', async (req, res) => {
 	try {
-		const groups = await Group.findAll({
+		const comments = await Comment.findAll({
 			include: { all: true },
 		});
 
-		res.status(200).json(groups);
+		res.status(200).json(comments);
 	} catch (err) {
 		res.status(400).json(err);
 	}
@@ -62,17 +64,19 @@ router.get('/test', async (req, res) => {
 
 router.delete('/test/:id', async (req, res) => {
 	try {
-		const groupData = await Group.destroy({
+		const commentData = await Comment.destroy({
 			where: {
 				id: req.params.id,
 			},
 		});
 
-		if (!groupData) {
-			return res.status(404).json({ message: 'No group found with this id!' });
+		if (!commentData) {
+			return res
+				.status(404)
+				.json({ message: 'No comment found with this id!' });
 		}
 
-		res.status(200).json(groupData);
+		res.status(200).json(commentData);
 	} catch (err) {
 		res.status(500).json(err);
 	}

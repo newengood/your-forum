@@ -1,0 +1,32 @@
+[
+	{
+		"text": "Q: What does a scientist's dog do with bones? A: Barium.",
+		"post_id": 1,
+		"user_id": 2
+	},
+	{
+		"text": "Pushing things off the counter for no reason...",
+		"post_id": 2,
+		"user_id": 3
+	},
+	{
+		"text": "But is it amphibious?",
+		"post_id": 3,
+		"user_id": 1
+	},
+	{
+		"text": "Stormy!",
+		"post_id": 4,
+		"user_id": 1
+	},
+	{
+		"text": "Dunno, but they'll be alright.",
+		"post_id": 5,
+		"user_id": 2
+	},
+	{
+		"text": "Is it a giant squid or a giant octopus?",
+		"post_id": 6,
+		"user_id": 3
+	}
+]

@@ -1,0 +1,38 @@
+[
+	{
+		"title": "Dog Jokes",
+		"content": "Q: Why was the dog stealing shingles? A: He wanted to become a woofer!",
+		"topic_id": 1,
+		"user_id": 3
+	},
+	{
+		"title": "Annoying Cats",
+		"content": "Waking me up at 4am for breakfast...",
+		"topic_id": 2,
+		"user_id": 1
+	},
+	{
+		"title": "My New Audi S8",
+		"content": "Slightly better than the S7...",
+		"topic_id": 3,
+		"user_id": 2
+	},
+	{
+		"title": "My New Lamborghini Huracan",
+		"content": "Make people jealous here...",
+		"topic_id": 4,
+		"user_id": 3
+	},
+	{
+		"title": "Seattle Seahawks",
+		"content": "What's happening with the team!?...",
+		"topic_id": 5,
+		"user_id": 1
+	},
+	{
+		"title": "Seattle Kraken",
+		"content": "Release the Kraken!",
+		"topic_id": 6,
+		"user_id": 2
+	}
+]
