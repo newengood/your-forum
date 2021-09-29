@@ -1,59 +1,52 @@
+{{!-- add topic section --}}\
+{{!-- create post section and add posts section in a partial --}}
+
 <div class="container">
   <div class="row">
     <div class="col">
+      <p>Group Name: {{name}}</p>
       <h2>Group Members</h2>
-      {{#each group as |group| }}
+      {{#each memberships as |member| }}
       <!--Def need to change this!!-->
       <div class="row mb-4">
         <div class="col-md-5">
-          <h4>
-            <p>{{group.name}}</p>
-          </h4>
-          {{#each group.user_id as |member| }}
-          <p>{{member}}</p>
+          <p>{{member.username}}</p>
         </div>
       </div>
       {{/each}}
       <form class="form new-invitation">
-        <p id="group-id">{{group.id}}</p>
         <div class="form-group">
           <label for="textarea"></label>
-          <textarea class="form-control" id="email" placeholder="Enter Email"
-            rows="3"></textarea>
-          <button class="btn btn-primary" type="submit">Invite</button>
+          <textarea class="form-control" id="email" placeholder="Enter Email" rows="3"></textarea>
+          <button class="btn btn-primary" data-id="{{id}}" type="submit">Invite</button>
         </div>
-      </div>
-      {{/each}}
-    </div>
-    <div class="col-6">
-      <h2>Posts</h2>
-      {{#each group.post as |post| }}
-      <div class="row mb-4">
-        <div class="col-md-5">
-          <h4>
-            <p>{{post.title}}</p>>
-          </h4>
-          <p>
-            {{post.content}}
-          </p>
-        </div>
-      </div>
-      {{/each}}
-    </div>
-    <div class="col">
-      <h2>Create New Post</h2>
-      <form class="form new-post">
-        <div class="form-group">
-          <label for="new-post"></label>
-          <input class="form-input" type="text" id="post-title" placeholder="Title"/>
-          <label for="textarea"></label>
-          <textarea class="form-control" id="post-content" placeholder="What would you like to say"
-            rows="3"></textarea>
-          <button class="btn btn-primary" type="submit">POST</button>
-        </div>
-      </form>
     </div>
   </div>
-
+  <div class="row">
+    <div class="col">
+      <h2>Topics</h2>
+      {{#each topics as |topic| }}
+      <!--Def need to change this!!-->
+      <div class="row mb-4">
+        <div class="col-md-5">
+          <p>{{topic.name}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="col">
+    <h2>Create New Post</h2>
+    <form class="form new-post">
+      <div class="form-group">
+        <label for="new-post"></label>
+        <input class="form-input" type="text" id="post-title" placeholder="Title" />
+        <label for="textarea"></label>
+        <textarea class="form-control" id="post-content" placeholder="What would you like to say" rows="3"></textarea>
+        <button class="btn btn-primary" type="submit">POST</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <script src="./js/dashboard.js"></script>

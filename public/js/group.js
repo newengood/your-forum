@@ -1,12 +1,12 @@
 // js script to load on group page
-
+// !! grab id from form handler in handlebars
 
 const invitationFormHandler = async (event) => {
     event.preventDefault();
   
     // Collect values from the login form
     const email = document.querySelector('#email').value.trim();
-    const group_id= document.querySelector('#group-id');
+    const group_id= event.target;
   
     if (email && group_id) {
       // Send a POST request to the API endpoint

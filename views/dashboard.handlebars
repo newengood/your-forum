@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col">
       <h2>Notifications</h2>
-      {{#each user.invitation as |invitation| }}
+      {{#each invitations as |invitation| }}
       <div class="row mb-4">
         <div class="col-md-5">
           {{#each invitation.group_id as |invitation|}}
@@ -16,7 +16,7 @@
     </div>
     <div class="col-6">
       <h2>Your Posts</h2>
-      {{#each user.post as |post| }}
+      {{#each posts as |post| }}
       <div class="row mb-4">
         <div class="col-md-5">
           <h4>
@@ -31,10 +31,10 @@
     </div>
     <div class="col">
       <h2>Your Groups</h2>
-      {{#each user.group as |group| }}
+      {{#each memberships as |group| }}
       <div class="row mb-4">
         <div class="col-md-5">
-          <button type="button" class="btn btn-primary btn-lg btn-block"><a class="text-white"
+          <button type="button" class="btn btn-primary"><a class="text-white"
               href="/group/{{group.id}}">{{group.name}}</a></button>
         </div>
       </div>

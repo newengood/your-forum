@@ -43,10 +43,10 @@ const delGroupHandler = async (event) => {
 };
 
 // handle buttons
-document
-  .querySelector('.')
-  .addEventListener('submit', newGroupFormHandler);
+// document
+//   .querySelector('.')
+//   .addEventListener('submit', newGroupFormHandler);
 
-document
-  .querySelector('.')
-  .addEventListener('click', delGroupHandler);
+// document
+//   .querySelector('.')
+//   .addEventListener('click', delHandler);
