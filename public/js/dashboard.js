@@ -1,5 +1,6 @@
 // script to load when on dashboard page
 // note!!: use as a reference only to create and delete a grouo!
+// create two calls, one to create usergroup and one to delete invitation
 
 // create group
 const newGroupFormHandler = async (event) => {

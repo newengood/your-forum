@@ -7,6 +7,7 @@
       <div class="row mb-4">
         <div class="col-md-5">
           {{#each invitation.group_id as |invitation|}}
+          {{!-- create to usergroup & delete invitation --}}
           {{!-- need to change line below to link invitation to accept invitation route (not created yet) --}}
             <p>{{invitation}}</p>
           {{/each}}
