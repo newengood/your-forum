@@ -3,26 +3,25 @@
   <div class="row">
     <div class="col">
       <h2>Notifications</h2>
-      {{#each invitations as |invitation| }}
+      {{#each user.invitation as |invitation| }}
       <div class="row mb-4">
         <div class="col-md-5">
-          <h4>
-            <a href="/invitation/{{group.id}}">{{invitation.group.name}}</a>
-          </h4>
-          <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Accept Invite</a>
+          {{#each invitation.group_id as |invitation|}}
+          {{!-- need to change line below to link invitation to accept invitation route (not created yet) --}}
+            <p>{{invitation}}</p>
+          {{/each}}
         </div>
       </div>
       {{/each}}
     </div>
     <div class="col-6">
       <h2>Your Posts</h2>
-      {{#each posts as |post| }}
+      {{#each user.post as |post| }}
       <div class="row mb-4">
         <div class="col-md-5">
           <h4>
-            <a href="/post/{{post.id}}">{{post.title}}</a>
+            {{post.title}}
           </h4>
-          <p>{{format_date post.created}}</p>
           <p>
             {{post.content}}
           </p>
@@ -32,12 +31,11 @@
     </div>
     <div class="col">
       <h2>Your Groups</h2>
-      {{#each groups as |group| }}
+      {{#each user.group as |group| }}
       <div class="row mb-4">
         <div class="col-md-5">
-
           <button type="button" class="btn btn-primary btn-lg btn-block"><a class="text-white"
-              href="/groups/{{group.id}}">{{group.name}}</a></button>
+              href="/group/{{group.id}}">{{group.name}}</a></button>
         </div>
       </div>
       {{/each}}
