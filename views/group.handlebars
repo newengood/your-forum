@@ -1,3 +1,47 @@
-<div>
-  {{!-- insert group page html here --}}
-</div>>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Group Members</h2>
+      {{#each members as |member| }}
+      <!--Def need to change this!!-->
+      <div class="row mb-4">
+        <div class="col-md-5">
+          <h4>
+            <a href="/invitation/{{user.email}}">{{invitation.group.name}}</a>
+          </h4>
+          <a class="btn btn-primary btn-sm btn-block" href="/invite" role="button">Send Invite</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="col-6">
+      <h2>Your {{group.name}} Posts</h2>
+      {{#each posts as |post| }}
+      <div class="row mb-4">
+        <div class="col-md-5">
+          <h4>
+            <a href="/post/{{post.id}}">{{post.title}}</a>
+          </h4>
+          <p>{{format_date post.created}}</p>
+          <p>
+            {{post.content}}
+          </p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="col">
+      <h2>Create New Post</h2>
+
+      <form class="form new-post">
+        <div class="form-group">
+          <label for="new-post"></label>
+          <input class="form-input" type="text" id="create-group" placeholder=" Title" />
+          <label for="textarea"></label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="What would you like to say"
+            rows="3"></textarea>
+          <button class="btn btn-primary" type="submit">POST</button>
+        </div>
+      </form>
+    </div>
+  </div>
