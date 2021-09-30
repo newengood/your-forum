@@ -1,10 +1,15 @@
+{{!-- add topic section --}}\
+{{!-- create post section and add posts section in a partial --}}
+
 <div class="container">
   <div class="row">
     <div class="col">
+      <p>Group Name: {{name}}</p>
       <h2>Group Members</h2>
       <div class="btn-group-vertical">
         {{#each memberships as |member| }}
         <a class="btn btn-primary" href="#" role="button">{{member.username}}</a>
+
       </div>
       {{/each}}
       <form class="form new-invitation">
@@ -43,13 +48,24 @@
             </div>
           </div>
           {{/each}}
-
         </div>
       </div>
 
     </div>
-    <div class="col">
-      <h2>Create New Post</h2>
+  </div>
+  <div class="col">
+    <h2>Create New Post</h2>
+    <form class="form new-post">
+      <div class="form-group">
+        <label for="new-post"></label>
+        <input class="form-input" type="text" id="post-title" placeholder="Title" />
+        <label for="textarea"></label>
+        <textarea class="form-control" id="post-content" placeholder="What would you like to say" rows="3"></textarea>
+        <button class="btn btn-primary" type="submit">POST</button>
+      </div>
+    </form>
+  </div>
+</div>
 
       <form class="form new-post">
         <div class="form-group">
@@ -63,3 +79,4 @@
     </div>
   </div>
 </div>
+
