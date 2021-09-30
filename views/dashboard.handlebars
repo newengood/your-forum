@@ -6,10 +6,11 @@
       {{#each invitations as |invitation| }}
       <div class="row mb-4">
         <div class="col-md-5">
-          <h4>
-            <a href="/invitation/{{group.id}}">{{invitation.group.name}}</a>
-          </h4>
-          <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Accept Invite</a>
+          {{#each invitation.group_id as |invitation|}}
+          {{!-- create to usergroup & delete invitation --}}
+          {{!-- need to change line below to link invitation to accept invitation route (not created yet) --}}
+            <p>{{invitation}}</p>
+          {{/each}}
         </div>
       </div>
       {{/each}}
@@ -20,9 +21,8 @@
       <div class="row mb-4">
         <div class="col-md-5">
           <h4>
-            <a href="/post/{{post.id}}">{{post.title}}</a>
+            {{post.title}}
           </h4>
-          <p>{{format_date post.created}}</p>
           <p>
             {{post.content}}
           </p>
@@ -32,12 +32,11 @@
     </div>
     <div class="col">
       <h2>Your Groups</h2>
-      {{#each groups as |group| }}
+      {{#each memberships as |group| }}
       <div class="row mb-4">
         <div class="col-md-5">
-
-          <button type="button" class="btn btn-primary btn-lg btn-block"><a class="text-white"
-              href="/groups/{{group.id}}">{{group.name}}</a></button>
+          <button type="button" class="btn btn-primary"><a class="text-white"
+              href="/group/{{group.id}}">{{group.name}}</a></button>
         </div>
       </div>
       {{/each}}

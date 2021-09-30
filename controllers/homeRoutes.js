@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Group } = require('../models');
+const { Group, Post, Invitation, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // get route for public groups
@@ -26,13 +26,16 @@ router.get('/', async (req, res) => {
 router.get('/group/:id', async (req, res) => {
   try {
     const groupData = await Group.findByPk(req.params.id, {
-    //insert here
+      include: {
+        all: true,
+        nested: true
+      }
     });
-
     const group = groupData.get({ plain: true });
+    console.log(group);
 
     res.render('group', {
-      ...project,
+      ...group,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -45,12 +48,15 @@ router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
+      
       attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
+      include: {
+        all: true
+      }
     });
 
     const user = userData.get({ plain: true });
-
+    console.log(user);
     res.render('dashboard', {
       ...user,
       logged_in: true

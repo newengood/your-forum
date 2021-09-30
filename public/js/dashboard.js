@@ -1,8 +1,9 @@
 // script to load when on dashboard page
 // note!!: use as a reference only to create and delete a grouo!
+// create two calls, one to create usergroup and one to delete invitation
 
 // create group
-const newFormHandler = async (event) => {
+const newGroupFormHandler = async (event) => {
   event.preventDefault();
 
   const name = document.querySelector('#group-name').value.trim();
@@ -26,7 +27,7 @@ const newFormHandler = async (event) => {
 };
 
 // delete group
-const delButtonHandler = async (event) => {
+const delGroupHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
@@ -43,10 +44,10 @@ const delButtonHandler = async (event) => {
 };
 
 // handle buttons
-document
-  .querySelector('.new-project-form')
-  .addEventListener('submit', newFormHandler);
+// document
+//   .querySelector('.')
+//   .addEventListener('submit', newGroupFormHandler);
 
-document
-  .querySelector('.project-list')
-  .addEventListener('click', delButtonHandler);
+// document
+//   .querySelector('.')
+//   .addEventListener('click', delHandler);

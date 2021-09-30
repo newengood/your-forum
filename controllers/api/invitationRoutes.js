@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { User, Invitation, Group } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// Need to create route to accept invitaition
+
 /* route to invite a user to join a group
   Request: { email, group_id } */
 router.post('/', withAuth, async ({ body }, res) => {
