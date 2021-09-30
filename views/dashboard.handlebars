@@ -1,48 +1,57 @@
 {{!-- insert dashboard html here --}}
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>Notifications</h2>
-      {{#each invitations as |invitation| }}
-      <div class="row mb-4">
-        <div class="col-md-5">
-          <h4>
-            <a href="/invitation/{{group.id}}">{{invitation.group.name}}</a>
-          </h4>
-          <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Accept Invite</a>
-        </div>
-      </div>
-      {{/each}}
-    </div>
-    <div class="col-6">
-      <h2>Your Posts</h2>
-      {{#each posts as |post| }}
-      <div class="row mb-4">
-        <div class="col-md-5">
-          <h4>
-            <a href="/post/{{post.id}}">{{post.title}}</a>
-          </h4>
-          <p>{{format_date post.created}}</p>
-          <p>
-            {{post.content}}
-          </p>
-        </div>
-      </div>
-      {{/each}}
-    </div>
-    <div class="col">
-      <h2>Your Groups</h2>
-      {{#each groups as |group| }}
-      <div class="row mb-4">
-        <div class="col-md-5">
+    <div class="row">
+        <div class="col">
+            <h2>Notifications</h2>
+            {{#each invitations as |invitation| }}
+            <div class="card" style="width: 18rem;">
 
-          <button type="button" class="btn btn-primary btn-lg btn-block"><a class="text-white"
-              href="/groups/{{group.id}}">{{group.name}}</a></button>
+                <h5>
+                    {{invitation.group.name}}
+                </h5>
+                <a class="btn btn-primary btn-sm btn-block" href="/acceptInvite" role="button">Accept Invite</a>
+
+
+            </div>
+            {{/each}}
         </div>
-      </div>
-      {{/each}}
+        <div class="col-6">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Your Posts</h1>
+                    {{#each posts as |post| }}
+                    <div class="card">
+                        <div class="card-header">
+                            <h2> <a href="/post/{{post.id}}">{{post.title}}</a></h2>
+                        </div>
+
+                        <div class="card-body">
+
+                            <p class="card-text">{{post.content}}</p>
+
+                        </div>
+                        <div class="card-footer text-muted">
+                            <p>{{format_date post.created}}</p>
+                        </div>
+                    </div>
+                    {{/each}}
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h2>Your Groups</h2>
+            {{#each mermberships as |group| }}
+            <div class="row mb-4">
+                <div class="col-md-5">
+
+                    <button type="button" class="btn btn-primary btn-lg btn-block"><a class="text-white"
+                            href="/groups/{{group.id}}">{{group.name}}</a></button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
     </div>
-  </div>
 </div>
 
 <script src="./js/dashboard.js"></script>
