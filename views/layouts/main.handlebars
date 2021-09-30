@@ -16,9 +16,9 @@
         <header>
     
             <nav class="nav">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light text-primary">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="/"><h1>YOUR FORUM</h1></a>
+                        <a class="navbar-brand text-primary" href="/"><h1>YOUR FORUM</h1></a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -28,14 +28,16 @@
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                               {{#if logged_in}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                                    <a class="nav-link text-primary" href="/dashboard">Dashboard</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="logout" href="/logout">Logout</a>
+
+                                    <a class="nav-link text-primary" href="/logout">Logout</a>
+
                                 </li>
                                 {{else}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/LoginRegister">Login/Register</a>
+                                    <a class="nav-link text-primary" href="/LoginRegister">Login/Register</a>
                                 </li>
                                 {{/if}}
                             </ul>
