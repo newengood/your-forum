@@ -1,45 +1,56 @@
 {{!-- template to use for a loginRegister page --}}
 <div class="container">
-<div class="row">
-  <div class="col-md-6">
-    <h2>Login</h2>
-
-    <form class="form login-form">
-      <div class="form-group">
-        <label for="email-login">Email:</label>
-        <input class="form-input" type="text" id="email-login" />
-      </div>
-      <div class="form-group">
-        <label for="password-login">Password:</label>
-        <input class="form-input" type="password" id="password-login" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Login</button>
-      </div>
-    </form>
-  </div>
-  <div class="col-md-6">
-    <h2>Register</h2>
-
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="name-signup">Username:</label>
-        <input class="form-input" type="text" id="name-signup" />
-      </div>
-      <div class="form-group">
-        <label for="email-signup">Email:</label>
-        <input class="form-input" type="text" id="email-signup" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">Password:</label>
-        <input class="form-input" type="password" id="password-signup" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Create Profile</button>
-      </div>
-    </form>
-  </div>
-</div>
-</div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-header">
+                    <h2>Login</h2>
+                    </div>
+                        
+                <div class="card-body">
+                <form class="form login-form">
+                  <div class="form-group">
+                    <label for="email-login"></label>
+                    <input class="form-input" type="text" placeholder="Enter Email" id="email-login" />
+                  </div>
+                  <div class="form-group">
+                    <label for="password-login"></label>
+                    <input class="form-input" type="password" placeholder="Enter Password" id="password-login" />
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Login</button>
+                  </div>
+                </form>
+              </div>
+                </div>
+              </div>  
+              <div class="col-md-6">
+                <div class="card" style="width: 20rem;">
+                <div class="card-header"> 
+                <h2>Register</h2>
+                </div>
+                <div class="card-body">
+                <form class="form signup-form">
+                  <div class="form-group">
+                    <label for="name-signup"></label>
+                    <input class="form-input" type="text" placeholder="Select Username" id="name-signup" />
+                  </div>
+                  <div class="form-group">
+                    <label for="email-signup"></label>
+                    <input class="form-input" type="text" placeholder="Enter Email" id="email-signup" />
+                  </div>
+                  <div class="form-group">
+                    <label for="password-signup"></label>
+                    <input class="form-input" type="password"  placeholder="Enter Password"id="password-signup" />
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Create Profile</button>
+                  </div>
+                </form>
+              </div>
+              </div>
+            </div>
+            </div>
+        </div>    
 
 <script src="./js/login.js"></script>
