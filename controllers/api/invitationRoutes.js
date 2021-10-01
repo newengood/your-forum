@@ -16,9 +16,10 @@ router.post('/', withAuth, async ({ body }, res) => {
 			return;
 		}
 
-		const group = Group.findByPk(body.group_id, {
+		const groupData = await Group.findByPk(body.group_id, {
 			attributes: ['name'],
 		});
+		const group = groupData.get({ plain: true });
 
 		const newInvite = Invitation.create({
 			user_id: userData.id,
@@ -28,11 +29,11 @@ router.post('/', withAuth, async ({ body }, res) => {
 		sendGrid.sendEmailNotification(
 			body.email,
 			`[Your Forum] You've received an invitation!`,
-			`You've been invited to join the '${group.name}' group. Click the link below to accept the invitation.
-			
-			{link}`,
-			`You've been invited to join the '${group.name}' group. Click the link below to accept the invitation.
-			
+			`You've been invited to join the '${group.name}' group. Click the following link to accept the invitation.
+
+			{www.google.com}`,
+			`You've been invited to join the '${group.name}' group. Click the following link to accept the invitation.
+
 			<a href='www.google.com'>Your Forum Dashboard</a>`
 		);
 
