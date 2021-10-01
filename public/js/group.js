@@ -5,8 +5,8 @@ const invitationFormHandler = async (event) => {
   
     // Collect values from the login form
     const email = document.querySelector('#email').value.trim();
-    const group_id= event.target;
-  
+    const group_id = event.target.getAttribute('data-id');
+      
     if (email && group_id) {
       // Send a POST request to the API endpoint
       const response = await fetch('/api/invitations', {
@@ -30,7 +30,7 @@ const invitationFormHandler = async (event) => {
     // Collect values from the login form
     const title = document.querySelector('#post-title').value.trim();
     const content = document.querySelector('#post-content').value.trim();
-    const group_id= document.querySelector('#group-id');
+    const group_id = event.target.getAttribute('data-id');
   
     if (title && content && group_id) {
       // Send a POST request to the API endpoint
@@ -49,11 +49,11 @@ const invitationFormHandler = async (event) => {
     }
   };
 
-  document
-    .querySelector('.new-invitation')
-    .addEventListener('submit', invitationFormHandler);
+document
+  .querySelector('.new-invitation')
+  .addEventListener('submit', invitationFormHandler);
 
-    document
-    .querySelector('.new-post')
-    .addEventListener('submit', postFormHandler);
+document
+  .querySelector('.new-post')
+  .addEventListener('submit', postFormHandler);
   

@@ -51,9 +51,9 @@
     </div>
     <div class="col">
       <h2>Create New Post</h2>
-      <form class="form new-post">
+      <form data-id="{{group.id}}" class="form new-post">
         <div class="form-group">
-          <label for="new-post"></label>
+          <label for="post-title"></label>
           <input class="form-input" type="text" id="post-title" placeholder=" Title" />
           <label for="textarea"></label>
           <textarea class="form-control" id="post-content" placeholder="What would you like to say" rows="3"></textarea>
@@ -64,4 +64,4 @@
   </div>
 </div>
 
-<script src="./js/dashboard.js"></script>
+<script src="../js/group.js"></script>

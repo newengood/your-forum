@@ -81,6 +81,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 			attributes: { exclude: ['password'] },
 			include: {
 				all: true,
+				nested: true,
 			},
 		});
 

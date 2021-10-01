@@ -4,7 +4,7 @@
             <h2>Notifications</h2>
             {{#each invitations as |invitation| }}
             <div id ="invitation" class="card" style="width: 18rem;">
-                <button class="btn btn-primary btn-sm btn-block" data-group ="{{invitation.group_id}}" data-user ="{{invitation.user_id}}" data-id="{{invitation.id}}" href="/dashboard" role="button">Accept Invite</button>
+                <button class="btn btn-primary btn-sm btn-block" data-group ="{{invitation.group_id}}" data-user ="{{invitation.user_id}}" data-id="{{invitation.id}}" href="/dashboard" role="button">Accept {{invitation.group.name}} Invite</button>
             </div>
             {{/each}}
         </div>
