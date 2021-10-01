@@ -1,10 +1,10 @@
 <div class="d-flex justify-content-between">
     <div class="row">
-        <div class="col justify-content-start">
+        <div class="col justify-content-start" id ="invitation">
             <h2>Notifications</h2>
             {{#each invitations as |invitation| }}
             <div class="card" style="width: 18rem;">
-                <a class="btn btn-primary btn-sm btn-block invitaiton" data-id="{{invitation.id}}" href="/dashboard" role="button">Accept Invite</a>
+                <button class="btn btn-primary btn-sm btn-block" data-group ="{{invitation.group_id}}" data-user ="{{invitation.user_id}}" data-id="{{invitation.id}}" href="/dashboard" role="button">Accept Invite</button>
             </div>
             {{/each}}
         </div>
@@ -35,11 +35,11 @@
         <div class="col">
           
             <h2>Your Groups</h2>
-            {{#each mermberships as |group| }}
+            {{#each memberships as |group| }}
             <div class="row mb4">
                 <div class="col-md-5">
-                    <button type="button" class="btn btn-primary btn-lg btn-block"><a class="text-white"
-                            href="/groups/{{group.id}}">{{group.name}}</a></button>
+                    <button type="button" class="btn btn-primary"><a class="text-white"
+                            href="/group/{{group.id}}">{{group.name}}</a></button>
                 </div>
             </div>
             {{/each}}
