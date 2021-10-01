@@ -32,7 +32,6 @@ router.get('/group/:id', async (req, res) => {
 			},
 		});
 		const group = groupData.get({ plain: true });
-		console.log(group);
 
 		res.render('group', {
 			...group,
@@ -53,7 +52,6 @@ router.get('/group/:id/topic/:topicId', async (req, res) => {
 			},
 		});
 		const group = groupData.get({ plain: true });
-		console.log(group);
 
 		let posts;
 		for (const topic of group.topics) {
@@ -61,7 +59,6 @@ router.get('/group/:id/topic/:topicId', async (req, res) => {
 				posts = topic.posts;
 			}
 		}
-		console.log(posts);
 
 		res.render('group', {
 			...group,
