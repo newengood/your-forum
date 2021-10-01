@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-between">
     <div class="row">
-        <div class="col justify-content-start" id ="invitation">
+        <div class="col justify-content-start" >
             <h2>Notifications</h2>
             {{#each invitations as |invitation| }}
-            <div class="card" style="width: 18rem;">
+            <div id ="invitation" class="card" style="width: 18rem;">
                 <button class="btn btn-primary btn-sm btn-block" data-group ="{{invitation.group_id}}" data-user ="{{invitation.user_id}}" data-id="{{invitation.id}}" href="/dashboard" role="button">Accept Invite</button>
             </div>
             {{/each}}
@@ -15,7 +15,7 @@
                     {{#each posts as |post| }}
                     <div class="card">
                         <div class="card-header">
-                            <h2> <a href="/post/{{post.id}}">{{post.title}}</a></h2>
+                            <h2>{{post.title}}</h2>
                         </div>
 
                         <div class="card-body">
