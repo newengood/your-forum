@@ -6,7 +6,7 @@ const invitationFormHandler = async event => {
 	// Collect values from the new-invitation form
 	const email = document.querySelector('#email').value.trim();
 	const group_id = event.target.getAttribute('data-id');
-	console.log(email, group_id);
+
 	if (email && group_id) {
 		// Send a POST request to the API endpoint
 		const response = await fetch('/api/invitations', {
@@ -17,7 +17,6 @@ const invitationFormHandler = async event => {
 
 		if (response.ok) {
 			// If successful, redirect the browser to the profile page
-			//document.location.replace(`/group/${group_id}`);
 			alert('User invitation sent!');
 		} else {
 			alert(response.statusText);

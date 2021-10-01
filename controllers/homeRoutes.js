@@ -36,6 +36,7 @@ router.get('/group/:id', async (req, res) => {
 		res.render('group', {
 			...group,
 			logged_in: req.session.logged_in,
+			scriptPath: '../',
 		});
 	} catch (err) {
 		res.status(500).json(err);
@@ -64,6 +65,7 @@ router.get('/group/:id/topic/:topicId', async (req, res) => {
 			...group,
 			posts,
 			logged_in: req.session.logged_in,
+			scriptPath: '../',
 		});
 	} catch (err) {
 		res.status(500).json(err);
@@ -82,7 +84,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 		});
 
 		const user = userData.get({ plain: true });
-		console.log(user);
+
 		res.render('dashboard', {
 			...user,
 			logged_in: true,
