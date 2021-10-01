@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const { User, Invitation, Group } = require('../../models');
 const withAuth = require('../../utils/auth');
-
-// Need to create route to accept invitaition
+const sendGrid = require('../../utils/sendGridApi');
 
 /* route to invite a user to join a group
   Request: { email, group_id } */
@@ -17,10 +16,26 @@ router.post('/', withAuth, async ({ body }, res) => {
 			return;
 		}
 
+		const groupData = await Group.findByPk(body.group_id, {
+			attributes: ['name'],
+		});
+		const group = groupData.get({ plain: true });
+
 		const newInvite = Invitation.create({
 			user_id: userData.id,
 			group_id: body.group_id,
 		});
+
+		sendGrid.sendEmailNotification(
+			body.email,
+			`[Your Forum] You've received an invitation!`,
+			`You've been invited to join the '${group.name}' group. Click the following link to accept the invitation.
+
+			{www.google.com}`,
+			`You've been invited to join the '${group.name}' group. Click the following link to accept the invitation.
+
+			<a href='www.google.com'>Your Forum Dashboard</a>`
+		);
 
 		res.status(200).json(newInvite);
 	} catch (err) {

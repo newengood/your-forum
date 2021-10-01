@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Group, Post, Invitation, User } = require('../models');
+const { Group, Post, Topic, User, UserGroup } = require('../models');
 const withAuth = require('../utils/auth');
 
 // get route for public groups
@@ -26,17 +26,25 @@ router.get('/', async (req, res) => {
 router.get('/group/:id', async (req, res) => {
 	try {
 		const groupData = await Group.findByPk(req.params.id, {
-			include: {
-				all: true,
-				nested: true,
-			},
+			include: [
+				{
+					model: Topic,
+					include: Post,
+				},
+				{
+					model: User,
+					as: 'memberships',
+					through: UserGroup,
+					attributes: ['username'],
+				},
+			],
 		});
 		const group = groupData.get({ plain: true });
-		console.log(group);
 
 		res.render('group', {
 			...group,
 			logged_in: req.session.logged_in,
+			scriptPath: '../',
 		});
 	} catch (err) {
 		res.status(500).json(err);
@@ -46,27 +54,38 @@ router.get('/group/:id', async (req, res) => {
 // get route for when a group's topic is selected
 router.get('/group/:id/topic/:topicId', async (req, res) => {
 	try {
-		const groupData = await Group.findByPk(req.params.id, {
-			include: {
-				all: true,
-				nested: true,
-			},
+		const groupId = req.params.id;
+		const topicId = req.params.topicId;
+
+		const groupData = await Group.findByPk(groupId, {
+			include: [
+				{
+					model: Topic,
+					include: Post,
+				},
+				{
+					model: User,
+					as: 'memberships',
+					through: UserGroup,
+					attributes: ['username'],
+				},
+			],
 		});
 		const group = groupData.get({ plain: true });
-		console.log(group);
 
 		let posts;
 		for (const topic of group.topics) {
-			if (topic.id == req.params.topicId) {
+			if (topic.id == topicId) {
 				posts = topic.posts;
 			}
 		}
-		console.log(posts);
 
 		res.render('group', {
 			...group,
+			selectedTopicId: topicId,
 			posts,
 			logged_in: req.session.logged_in,
+			scriptPath: '../',
 		});
 	} catch (err) {
 		res.status(500).json(err);
@@ -85,7 +104,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 		});
 
 		const user = userData.get({ plain: true });
-		console.log(user);
+
 		res.render('dashboard', {
 			...user,
 			logged_in: true,
