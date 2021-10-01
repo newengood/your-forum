@@ -27,38 +27,42 @@
         </div>
       </div>
     </div>
-    <div class="col-6">
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h1 class="display-6">Your posts in {{name}}</h1>
-          {{#each posts as |post| }}
-          <div class="card">
-            <div class="card-header">
-              <h2> <a href="/post/{{post.id}}">{{post.title}}</a></h2>
-            </div>
-            <div class="card-body">
-              <p class="card-text">{{post.content}}</p>
-            </div>
-            <div class="card-footer text-muted">
-              <p>{{post.createdAt}}</p>
+    {{#if selectedTopicId}}
+      {{#if posts}}
+        <div class="col-6">
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-6">Your posts in {{name}}</h1>
+              {{#each posts as |post| }}
+              <div class="card">
+                <div class="card-header">
+                  <h2> <a href="/post/{{post.id}}">{{post.title}}</a></h2>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{post.content}}</p>
+                </div>
+                <div class="card-footer text-muted">
+                  <p>{{post.createdAt}}</p>
+                </div>
+              </div>
+              {{/each}}
             </div>
           </div>
-          {{/each}}
         </div>
+      {{/if}}
+      <div class="col">
+        <h2>Create New Post</h2>
+        <form class="form new-post" onsubmit='postFormHandler(event, {{selectedTopicId}})'>
+          <div class="form-group">
+            <label for="post-title"></label>
+            <input class="form-input" type="text" id="post-title" placeholder=" Title" />
+            <label for="post-content"></label>
+            <textarea class="form-control" id="post-content" placeholder="What would you like to say" rows="3"></textarea>
+            <button class="btn btn-primary" type="submit">POST</button>
+          </div>
+        </form>
       </div>
-    </div>
-    <div class="col">
-      <h2>Create New Post</h2>
-      <form class="form new-post">
-        <div class="form-group">
-          <label for="post-title"></label>
-          <input class="form-input" type="text" id="post-title" placeholder=" Title" />
-          <label for="post-content"></label>
-          <textarea class="form-control" id="post-content" placeholder="What would you like to say" rows="3"></textarea>
-          <button class="btn btn-primary" type="submit">POST</button>
-        </div>
-      </form>
-    </div>
+    {{/if}}
   </div>
 </div>
 

@@ -24,25 +24,27 @@ const invitationFormHandler = async event => {
 	}
 };
 
-const postFormHandler = async event => {
+const postFormHandler = async (event, topic_id) => {
 	event.preventDefault();
 
 	// Collect values from the login form
 	const title = document.querySelector('#post-title').value.trim();
 	const content = document.querySelector('#post-content').value.trim();
-	const group_id = event.target.getAttribute('data-id');
 
-	if (title && content && group_id) {
-		// Send a POST request to the API endpoint
+	const pathParts = document.URL.split('/');
+	const groupId = pathParts[pathParts.length - 1];
+
+	if (title && content && topic_id) {
+		// Send a POST request to the API endpoint - Create the new post
 		const response = await fetch('/api/posts', {
 			method: 'POST',
-			body: JSON.stringify({ title, content, group_id }),
+			body: JSON.stringify({ title, content, topic_id }),
 			headers: { 'Content-Type': 'application/json' },
 		});
 
 		if (response.ok) {
-			// If successful, redirect the browser to the profile page
-			document.location.replace(`/group/${group_id}`);
+			// If successful, refresh the topic page to reload the new post.
+			topicButtonHandler(groupId, topic_id);
 		} else {
 			alert(response.statusText);
 		}
@@ -69,5 +71,3 @@ const topicButtonHandler = async (group_id, topic_id) => {
 document
 	.querySelector('.new-invitation')
 	.addEventListener('submit', invitationFormHandler);
-
-document.querySelector('.new-post').addEventListener('submit', postFormHandler);

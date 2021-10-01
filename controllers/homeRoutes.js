@@ -46,7 +46,10 @@ router.get('/group/:id', async (req, res) => {
 // get route for when a group's topic is selected
 router.get('/group/:id/topic/:topicId', async (req, res) => {
 	try {
-		const groupData = await Group.findByPk(req.params.id, {
+		const groupId = req.params.id;
+		const topicId = req.params.topicId;
+
+		const groupData = await Group.findByPk(groupId, {
 			include: {
 				all: true,
 				nested: true,
@@ -56,13 +59,14 @@ router.get('/group/:id/topic/:topicId', async (req, res) => {
 
 		let posts;
 		for (const topic of group.topics) {
-			if (topic.id == req.params.topicId) {
+			if (topic.id == topicId) {
 				posts = topic.posts;
 			}
 		}
 
 		res.render('group', {
 			...group,
+			selectedTopicId: topicId,
 			posts,
 			logged_in: req.session.logged_in,
 			scriptPath: '../',
