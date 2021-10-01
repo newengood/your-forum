@@ -1,7 +1,6 @@
-{{!-- insert dashboard html here --}}
-<div class="container">
+<div class="d-flex justify-content-between">
     <div class="row">
-        <div class="col">
+        <div class="col justify-content-start">
             <h2>Notifications</h2>
             {{#each invitations as |invitation| }}
             <div class="card" style="width: 18rem;">
@@ -31,10 +30,15 @@
 
                         </div>
                         <div class="card-footer text-muted">
-                            <p>{{format_date post.created}}</p>
+                          {{#each comments as |comment| }}
+                            <p>{{post.comment.text}}</p>
+                          {{/each}}
                         </div>
                     </div>
                     {{/each}}
+                    
+                    
+
 
                 </div>
             </div>
@@ -42,16 +46,15 @@
         <div class="col">
           
             <h2>Your Groups</h2>
-            {{#each mermberships as |group| }}
+            {{#each memberships as |group| }}
             <div class="row mb-4">
                 <div class="col-md-5">
 
-                    <button type="button" class="btn btn-primary btn-lg btn-block"><a class="text-white"
-                            href="/groups/{{group.id}}">{{group.name}}</a></button>
+                    <button type="button" class="btn btn-primary"><a class="text-white"
+                            href="/group/{{group.id}}">{{group.name}}</a></button>
                 </div>
             </div>
             {{/each}}
-
         </div>
     </div>
 </div>

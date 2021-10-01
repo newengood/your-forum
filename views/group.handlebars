@@ -1,15 +1,13 @@
-{{!-- add topic section --}}\
+{{!-- add topic section --}}
 {{!-- create post section and add posts section in a partial --}}
 
 <div class="container">
   <div class="row">
     <div class="col">
-      <p>Group Name: {{name}}</p>
       <h2>Group Members</h2>
       <div class="btn-group-vertical">
         {{#each memberships as |member| }}
         <a class="btn btn-primary" href="#" role="button">{{member.username}}</a>
-
       </div>
       {{/each}}
       <form class="form new-invitation">
@@ -25,21 +23,18 @@
           <a class="btn btn-primary" href="#" role="button">{{topic.name}}</a>
           {{/each}}
         </div>
-
     </div>
 
     <div class="col-6">
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-5">Your {{group.name}} Posts</h1>
+          <h1 class="display-6">Your posts in {{name}}</h1>
           {{#each posts as |post| }}
           <div class="card">
             <div class="card-header">
               <h2> <a href="/post/{{post.id}}">{{post.title}}</a></h2>
             </div>
-
             <div class="card-body">
-
               <p class="card-text">{{post.content}}</p>
 
             </div>
@@ -48,25 +43,12 @@
             </div>
           </div>
           {{/each}}
+
         </div>
       </div>
-
     </div>
-  </div>
-  <div class="col">
-    <h2>Create New Post</h2>
-    <form class="form new-post">
-      <div class="form-group">
-        <label for="new-post"></label>
-        <input class="form-input" type="text" id="post-title" placeholder="Title" />
-        <label for="textarea"></label>
-        <textarea class="form-control" id="post-content" placeholder="What would you like to say" rows="3"></textarea>
-        <button class="btn btn-primary" type="submit">POST</button>
-      </div>
-    </form>
-  </div>
-</div>
-
+    <div class="col">
+      <h2>Create New Post</h2>
       <form class="form new-post">
         <div class="form-group">
           <label for="new-post"></label>
@@ -80,3 +62,4 @@
   </div>
 </div>
 
+<script src="./js/dashboard.js"></script>
