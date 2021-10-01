@@ -3,50 +3,68 @@
 // create two calls, one to create usergroup and one to delete invitation
 
 // create group
-const newGroupFormHandler = async (event) => {
-  event.preventDefault();
+// const newGroupFormHandler = async (event) => {
+//   event.preventDefault();
 
-  const name = document.querySelector('#group-name').value.trim();
+//   const name = document.querySelector('#group-name').value.trim();
 
 
-  if (name ) {
-    const response = await fetch(`/api/groupRoutes`, {
-      method: 'POST',
-      body: JSON.stringify({ name }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+//   if (name ) {
+//     const response = await fetch(`/api/groupRoutes`, {
+//       method: 'POST',
+//       body: JSON.stringify({ name }),
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     });
 
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to create group');
-    }
-  }
-};
+//     if (response.ok) {
+//       document.location.replace('/dashboard');
+//     } else {
+//       alert('Failed to create group');
+//     }
+//   }
+// };
 
 // delete group
-const delGroupHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
+// const delGroupHandler = async (event) => {
+//   if (event.target.hasAttribute('data-id')) {
+//     const id = event.target.getAttribute('data-id');
 
-    const response = await fetch(`/api/groups/${id}`, {
+//     const response = await fetch(`/api/groups/${id}`, {
+//       method: 'DELETE',
+//     });
+
+//     if (response.ok) {
+//       document.location.replace('/dashboard');
+//     } else {
+//       alert('Failed to delete group');
+//     }
+//   }
+// };
+
+const invitationHandler = async (event) => {
+    event.preventDefault();
+    console.log("button clicked")
+  
+    const id = event.targetGetAttribute('data-id');
+    console.log(id);
+
+    const response = await fetch(`/api/invitations/${id}`, {
       method: 'DELETE',
     });
-
     if (response.ok) {
       document.location.replace('/dashboard');
     } else {
-      alert('Failed to delete group');
+      alert('Failed to delete invitation');
     }
-  }
-};
 
-// handle buttons
-// document
-//   .querySelector('.')
-//   .addEventListener('submit', newGroupFormHandler);
+
+  };
+
+document
+  .querySelectorAll('.invitaiton')
+  .addEventListener('click', invitationHandler);
 
 // document
 //   .querySelector('.')
