@@ -3,50 +3,84 @@
 // create two calls, one to create usergroup and one to delete invitation
 
 // create group
-const newGroupFormHandler = async (event) => {
-  event.preventDefault();
+// const newGroupFormHandler = async (event) => {
+//   event.preventDefault();
 
-  const name = document.querySelector('#group-name').value.trim();
+//   const name = document.querySelector('#group-name').value.trim();
 
 
-  if (name ) {
-    const response = await fetch(`/api/groupRoutes`, {
+//   if (name ) {
+//     const response = await fetch(`/api/groupRoutes`, {
+//       method: 'POST',
+//       body: JSON.stringify({ name }),
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     });
+
+//     if (response.ok) {
+//       document.location.replace('/dashboard');
+//     } else {
+//       alert('Failed to create group');
+//     }
+//   }
+// };
+
+// delete group
+// const delGroupHandler = async (event) => {
+//   if (event.target.hasAttribute('data-id')) {
+//     const id = event.target.getAttribute('data-id');
+
+//     const response = await fetch(`/api/groups/${id}`, {
+//       method: 'DELETE',
+//     });
+
+//     if (response.ok) {
+//       document.location.replace('/dashboard');
+//     } else {
+//       alert('Failed to delete group');
+//     }
+//   }
+// };
+
+const invitationHandler = async (event) => {
+
+  const id = event.target.getAttribute('data-id');
+
+
+  const response = await fetch(`/api/invitations/${id}`, {
+    method: 'DELETE',
+
+  });
+  if (response.ok) {
+
+    const user_id = event.target.getAttribute('data-user');
+    const group_id = event.target.getAttribute('data-group');
+
+
+    const response = await fetch(`/api/usergroups`, {
       method: 'POST',
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ user_id, group_id }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
-
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to create group');
+    if (!response.ok) {
+      alert('Deleted Invitation, and failed to add group membership');
     }
+    document.location.reload();
+  } else {
+    alert('Failed to delete invitation');
   }
+
+
+
+
 };
 
-// delete group
-const delGroupHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
-
-    const response = await fetch(`/api/groups/${id}`, {
-      method: 'DELETE',
-    });
-
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to delete group');
-    }
-  }
-};
-
-// handle buttons
-// document
-//   .querySelector('.')
-//   .addEventListener('submit', newGroupFormHandler);
+document
+  .querySelector('#invitation')
+  .addEventListener('click', invitationHandler);
 
 // document
 //   .querySelector('.')

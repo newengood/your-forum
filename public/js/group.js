@@ -50,6 +50,13 @@ const invitationFormHandler = async (event) => {
     }
   };
 
+
+  const postFormHandler = async (event) => {
+  
+   
+  };
+
+
   document
     .querySelector('.new-invitation')
     .addEventListener('submit', invitationFormHandler);

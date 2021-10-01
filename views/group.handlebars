@@ -20,15 +20,20 @@
         <h2>Topics</h2>
         <div class="btn-group-vertical">
           {{#each topics as |topic| }}
-          <a class="btn btn-primary" href="#" role="button">{{topic.name}}</a>
+          <a class="btn btn-primary" href="/group/{{topic.group_id}}/topic/{{topic.id}}" role="button">{{topic.name}}</a>
           {{/each}}
         </div>
     </div>
+
+    {{#if }}
 
     <div class="col-6">
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1 class="display-6">Your posts in {{name}}</h1>
+
+
+
           {{#each posts as |post| }}
           <div class="card">
             <div class="card-header">
@@ -39,7 +44,7 @@
 
             </div>
             <div class="card-footer text-muted">
-              <p>{{format_date post.created}}</p>
+              <p>{{post.createdAt}}</p>
             </div>
           </div>
           {{/each}}
