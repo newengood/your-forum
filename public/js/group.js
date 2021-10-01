@@ -1,5 +1,4 @@
 // js script to load on group page
-// !! grab id from form handler in handlebars
 
 const invitationFormHandler = async (event) => {
     event.preventDefault();
@@ -49,13 +48,6 @@ const invitationFormHandler = async (event) => {
       }
     }
   };
-
-
-  const postFormHandler = async (event) => {
-  
-   
-  };
-
 
   document
     .querySelector('.new-invitation')
