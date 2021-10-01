@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Group, User } = require('../../models');
+const { Group, User, UserGroup, Topic, Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 /* route to create group
@@ -56,6 +56,34 @@ router.get('/test', async (req, res) => {
 
 		res.status(200).json(groups);
 	} catch (err) {
+		res.status(400).json(err);
+	}
+});
+
+router.get('/test/:id', async (req, res) => {
+	try {
+		const groupData = await Group.findByPk(req.params.id, {
+			// include: {
+			// 	all: true,
+			// 	nested: true,
+			// },
+			include: [
+				{
+					model: Topic,
+					include: Post,
+				},
+				{
+					model: User,
+					as: 'memberships',
+					through: UserGroup,
+					attributes: ['username'],
+				},
+			],
+		});
+
+		res.status(200).json(groupData);
+	} catch (err) {
+		console.log(err);
 		res.status(400).json(err);
 	}
 });

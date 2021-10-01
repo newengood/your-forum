@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Group, Post, Invitation, User } = require('../models');
+const { Group, Post, Topic, User, UserGroup } = require('../models');
 const withAuth = require('../utils/auth');
 
 // get route for public groups
@@ -26,10 +26,18 @@ router.get('/', async (req, res) => {
 router.get('/group/:id', async (req, res) => {
 	try {
 		const groupData = await Group.findByPk(req.params.id, {
-			include: {
-				all: true,
-				nested: true,
-			},
+			include: [
+				{
+					model: Topic,
+					include: Post,
+				},
+				{
+					model: User,
+					as: 'memberships',
+					through: UserGroup,
+					attributes: ['username'],
+				},
+			],
 		});
 		const group = groupData.get({ plain: true });
 
@@ -50,10 +58,18 @@ router.get('/group/:id/topic/:topicId', async (req, res) => {
 		const topicId = req.params.topicId;
 
 		const groupData = await Group.findByPk(groupId, {
-			include: {
-				all: true,
-				nested: true,
-			},
+			include: [
+				{
+					model: Topic,
+					include: Post,
+				},
+				{
+					model: User,
+					as: 'memberships',
+					through: UserGroup,
+					attributes: ['username'],
+				},
+			],
 		});
 		const group = groupData.get({ plain: true });
 
