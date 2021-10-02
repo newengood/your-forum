@@ -1,15 +1,17 @@
 {{!-- add topic section --}}
 {{!-- create post section and add posts section in a partial --}}
 
-<div class="container">
+<div class="container mx-1 ">
   <div class="row">
     <div class="col">
       <h2>Group Members</h2>
       <div class="btn-group-vertical">
         {{#each memberships as |member| }}
-        <h1>{{member.username}}</h1>
-      </div>
+        <h3>{{member.username}}</h3>
       {{/each}}
+    
+
+      
       <form class="form new-invitation" data-id="{{id}}">
         <div class="form-group">
           <label for="email"></label>
@@ -18,52 +20,74 @@
         </div>
         <hr>
       </form>
-      <div class="col">
-        <h2>Topics</h2>
-        <div class="btn-group-vertical topic-btns">
-          {{#each topics as |topic| }}
-            <button class="btn btn-primary" onclick='topicButtonHandler({{topic.group_id}}, {{topic.id}})'>{{topic.name}}</>
+      
+    
+
+      <div>
+      <h2>Topics</h2>
+      <div class="btn-group-vertical topic-btns">
+        {{#each topics as |topic| }}
+        <div class="card" style="width: 18rem;">
+          <button class="btn btn-primary mb-0"
+            onclick='topicButtonHandler({{topic.group_id}}, {{topic.id}})'>{{topic.name}}</button>
+        </div>
+        {{/each}}
+      </div>
+      </div>
+    </div>
+    </div>
+
+
+
+
+    <div class="col-6 text-center">
+      {{#unless posts}}
+      <h2>Click on a topic to view posts</h2>
+      {{/unless}}
+      {{#if selectedTopicId}}
+      {{#if posts}}
+      <h1>Your Posts in {{name}}</h1>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          
+          {{#each posts as |post| }}
+          <div class="card" style="width: 22rem;">
+            <div class="card-header">
+              <h2> {{post.title}}</h2>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{post.content}}</p>
+            </div>
+            <div class="card-footer text-muted">
+              <p>posted on {{format_date post.createdAt}}</p>
+            </div>
+          </div>
           {{/each}}
         </div>
       </div>
-    </div>
-    {{#if selectedTopicId}}
-      {{#if posts}}
-        <div class="col-6">
-          <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-              <h1 class="display-6">Your posts in {{name}}</h1>
-              {{#each posts as |post| }}
-              <div class="card">
-                <div class="card-header">
-                  <h2> <a href="/post/{{post.id}}">{{post.title}}</a></h2>
-                </div>
-                <div class="card-body">
-                  <p class="card-text">{{post.content}}</p>
-                </div>
-                <div class="card-footer text-muted">
-                  <p>{{post.createdAt}}</p>
-                </div>
-              </div>
-              {{/each}}
-            </div>
-          </div>
-        </div>
+
       {{/if}}
-      <div class="col">
-        <h2>Create New Post</h2>
-        <form class="form new-post" onsubmit='postFormHandler(event, {{selectedTopicId}})'>
-          <div class="form-group">
-            <label for="post-title"></label>
-            <input class="form-input" type="text" id="post-title" placeholder=" Title" />
-            <label for="post-content"></label>
-            <textarea class="form-control" id="post-content" placeholder="What would you like to say" rows="3"></textarea>
-            <button class="btn btn-primary" type="submit">POST</button>
-          </div>
-        </form>
-      </div>
-    {{/if}}
+      {{/if}}
+    </div>
+
+
+
+    <div class="col">
+      <h2>Create New Post</h2>
+      <form class="form new-post" onsubmit='postFormHandler(event, {{selectedTopicId}})'>
+        <div class="form-group">
+          <label for="post-title"></label>
+          <input class="form-input" type="text" id="post-title" placeholder=" Title" />
+          <label for="post-content"></label>
+          <textarea class="form-control" id="post-content" placeholder="What would you like to say" rows="3"></textarea>
+          <button class="btn btn-primary" type="submit">POST</button>
+        </div>
+      </form>
+    </div>
   </div>
+
+
+</div>
 </div>
 
 <script src="../js/group.js"></script>
