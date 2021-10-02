@@ -4,15 +4,13 @@
 <div class="container mx-1 ">
   <div class="row">
     <div class="col">
-      <h2>Group Members</h2>
+      <h2>Group Members</h2>   <!-- DISPLAYS GROUP MEMBERS -->
       <div class="btn-group-vertical">
         {{#each memberships as |member| }}
-        <h3>{{member.username}}</h3>
+        <h4>{{member.username}}</h4>
       {{/each}}
-    
-
-      
-      <form class="form new-invitation" data-id="{{id}}">
+         
+      <form class="form new-invitation" data-id="{{id}}"> <!-- SEND INVITE TO NEW MEMBER -->
         <div class="form-group">
           <label for="email"></label>
           <textarea class="form-control" id="email" placeholder="Enter Email" rows="1"></textarea>
@@ -20,11 +18,12 @@
         </div>
         <hr>
       </form>
-      
+
+    
     
 
       <div>
-      <h2>Topics</h2>
+      <h2>Topics</h2>                     <!-- DISPLAY TOPICS RELATED TO GROUP -->
       <div class="btn-group-vertical topic-btns">
         {{#each topics as |topic| }}
         <div class="card" style="width: 18rem;">
@@ -34,13 +33,25 @@
         {{/each}}
       </div>
       </div>
+
+      <div class="col">
+            <form data-id="{{id}}" class="form new-topic">  <!-- FORM FOR NEW TOPIC-->
+                <div class="form-group">
+                    <label for="topic-title"></label>
+                    <input class="form-input" type="text" placeholder="New Topic" id="group-title" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Create</button>
+                </div>
+            </form>
+        </div>
     </div>
     </div>
 
 
 
 
-    <div class="col-6 text-center">
+    <div class="col-6 text-center">           <!-- DISPLAY SELECTED TOPIC POSTS -->
       {{#unless posts}}
       <h2>Click on a topic to view posts</h2>
       {{/unless}}
@@ -72,7 +83,7 @@
 
 
 
-    <div class="col">
+    <div class="col">                 <!-- CREATE A NEW POST FORM -->
       <h2>Create New Post</h2>
       <form class="form new-post" onsubmit='postFormHandler(event, {{selectedTopicId}})'>
         <div class="form-group">
@@ -84,6 +95,7 @@
         </div>
       </form>
     </div>
+    
   </div>
 
 
