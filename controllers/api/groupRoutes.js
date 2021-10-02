@@ -4,13 +4,24 @@ const withAuth = require('../../utils/auth');
 
 /* route to create group
   Request: { name } */
-router.post('/', withAuth, async (req, res) => {
+  router.post('/', withAuth, async (req, res) => {
 	try {
+		const user_id = req.session.user_id;
+
 		const newGroup = await Group.create({
 			...req.body,
 			user_id: req.session.user_id,
 		});
 
+		if (!newGroup) {
+			return res.status(500);
+		}
+		const group = newGroup.get({ plain: true });
+		console.log(group.id);
+		await UserGroup.create({
+			group_id: group.id,
+			user_id: req.session.user_id,
+		});
 		res.status(200).json(newGroup);
 	} catch (err) {
 		res.status(400).json(err);

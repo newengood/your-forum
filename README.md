@@ -13,15 +13,15 @@
   
 ## Description
 
-* 
+* A public discussion forum where the user in charge of the experience.
   
 ## Installation
 
-* 
+* Clone the repository, install dependencies using command "npm i", then start server using command "npm start"
 
 ## Usage
 
-![usage]()
+![usage](./assets/usage.png)
 
 ## License
   
@@ -29,15 +29,20 @@
   
 ## Contributing Guidelines
 
-*
+* Fork the repository, commit contributions, then create a pull request.
 
 ## Test Instructions
 
-* 
+* Fork the repository, create tests, then submit an issue.
   
 ## Questions
 
-Contact information for questions:
+* Contact information for questions:
+
+* https://github.com/MichaelHermes
+* https://github.com/troyat88
+* https://github.com/newengood
+
 
   
   
