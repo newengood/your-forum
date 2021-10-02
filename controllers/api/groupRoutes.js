@@ -10,8 +10,15 @@ router.post('/', withAuth, async (req, res) => {
 			...req.body,
 			user_id: req.session.user_id,
 		});
-
-		res.status(200).json(newGroup);
+		if(!newGroup) {
+			return res.status(500);
+		}
+		console.log("test" + newGroup)
+		const newUserGroup = await UserGroup.create({
+			group_id: group.id,
+			user_id: req.session.user_id,
+		})
+		res.status(200).json(newGroup, newUserGroup);
 	} catch (err) {
 		res.status(400).json(err);
 	}
