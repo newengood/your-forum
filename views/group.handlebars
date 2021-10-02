@@ -8,83 +8,91 @@
       <div class="btn-group-vertical">
         {{#each memberships as |member| }}
         <h3>{{member.username}}</h3>
-      {{/each}}
-    
-
-      
-      <form class="form new-invitation" data-id="{{id}}">
-        <div class="form-group">
-          <label for="email"></label>
-          <textarea class="form-control" id="email" placeholder="Enter Email" rows="1"></textarea>
-          <button class="btn btn-primary" type="submit">Invite</button>
-        </div>
-        <hr>
-      </form>
-      
-    
-
-      <div>
-      <h2>Topics</h2>
-      <div class="btn-group-vertical topic-btns">
-        {{#each topics as |topic| }}
-        <div class="card" style="width: 18rem;">
-          <button class="btn btn-primary mb-0"
-            onclick='topicButtonHandler({{topic.group_id}}, {{topic.id}})'>{{topic.name}}</button>
-        </div>
         {{/each}}
-      </div>
-      </div>
-    </div>
-    </div>
 
 
 
-
-    <div class="col-6 text-center">
-      {{#unless posts}}
-      <h2>Click on a topic to view posts</h2>
-      {{/unless}}
-      {{#if selectedTopicId}}
-      {{#if posts}}
-      <h1>Your Posts in {{name}}</h1>
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          
-          {{#each posts as |post| }}
-          <div class="card" style="width: 22rem;">
-            <div class="card-header">
-              <h2> {{post.title}}</h2>
-            </div>
-            <div class="card-body">
-              <p class="card-text">{{post.content}}</p>
-            </div>
-            <div class="card-footer text-muted">
-              <p>posted on {{format_date post.createdAt}}</p>
-            </div>
+        <form class="form new-invitation" data-id="{{id}}">
+          <div class="form-group">
+            <label for="email"></label>
+            <textarea class="form-control" id="email" placeholder="Enter Email" rows="1"></textarea>
+            <button class="btn btn-primary" type="submit">Invite</button>
           </div>
-          {{/each}}
+          <hr>
+        </form>
+
+
+
+        <div>
+          <h2>Topics</h2>
+          <div class="btn-group-vertical topic-btns">
+            {{#each topics as |topic| }}
+            <div class="card" style="width: 18rem;">
+              <button class="btn btn-primary mb-0"
+                onclick='topicButtonHandler({{topic.group_id}}, {{topic.id}})'>{{topic.name}}</button>
+            </div>
+            {{/each}}
+          </div>
+          <h2>Create New Topic</h2>
+          <form data-id="{{id}}" class="form new-topic">
+            <div class="form-group">
+              <label for="topic-title"></label>
+              <input class="form-input" type="text" id="topic-title" placeholder="Topic" rows="1" />
+              <button class="btn btn-primary" type="submit">Create</button>
+            </div>
+          </form>
         </div>
       </div>
-
-      {{/if}}
-      {{/if}}
-    </div>
-
-
-
-    <div class="col">
-      <h2>Create New Post</h2>
-      <form class="form new-post" onsubmit='postFormHandler(event, {{selectedTopicId}})'>
-        <div class="form-group">
-          <label for="post-title"></label>
-          <input class="form-input" type="text" id="post-title" placeholder=" Title" />
-          <label for="post-content"></label>
-          <textarea class="form-control" id="post-content" placeholder="What would you like to say" rows="3"></textarea>
-          <button class="btn btn-primary" type="submit">POST</button>
-        </div>
-      </form>
     </div>
   </div>
+</div>
+
+
+<div class="col-6 text-center">
+  {{#unless posts}}
+  <h2>Click on a topic to view posts</h2>
+  {{/unless}}
+  {{#if selectedTopicId}}
+  {{#if posts}}
+  <h1>Your Posts in {{name}}</h1>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+
+      {{#each posts as |post| }}
+      <div class="card" style="width: 22rem;">
+        <div class="card-header">
+          <h2> {{post.title}}</h2>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{post.content}}</p>
+        </div>
+        <div class="card-footer text-muted">
+          <p>posted on {{format_date post.createdAt}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  {{/if}}
+  {{/if}}
+</div>
+
+
+
+<div class="col">
+  <h2>Create New Post</h2>
+  <form class="form new-post" onsubmit='postFormHandler(event, {{selectedTopicId}})'>
+    <div class="form-group">
+      <label for="post-title"></label>
+      <input class="form-input" type="text" id="post-title" placeholder=" Title" />
+      <label for="post-content"></label>
+      <textarea class="form-control" id="post-content" placeholder="What would you like to say" rows="3"></textarea>
+      <button class="btn btn-primary" type="submit">POST</button>
+    </div>
+  </form>
+</div>
+</div>
 
 
 </div>

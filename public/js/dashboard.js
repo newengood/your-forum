@@ -29,7 +29,37 @@ const invitationHandler = async (event) => {
   }
 };
 
+const newGroupHandler = async (event) => {
+  event.preventDefault();
+
+  const name = document.querySelector('#group-title').value.trim();
+  const user_id = event.target.getAttribute('data-id');
+
+	if (name && user_id) {
+		try {
+			const response = await fetch(`/api/groups`, {
+				method: 'POST',
+        body: JSON.stringify({ name, user_id }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+			});
+      if (response.ok) {
+        document.location.reload();
+      }
+		} catch (err) {
+			console.error(err);
+		}
+	}
+};
+
 document
   .querySelector('#invitation')
   .addEventListener('click', invitationHandler);
+
+document
+  .querySelector('.new-group')
+  .addEventListener('submit', newGroupHandler);
+
+
 

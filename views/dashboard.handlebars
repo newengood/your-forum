@@ -1,51 +1,65 @@
 <div class="d-flex mx-3 text-center">
     <div class="row">
-        <div class="col justify-content-start" >
+        <div class="col justify-content-start">
             <h2>Notifications</h2>
             {{#each invitations as |invitation| }}
-            <div id ="invitation" class="card" style="width: 18rem;">
-                <button class="btn btn-primary btn-sm btn-block" data-group ="{{invitation.group_id}}" data-user ="{{invitation.user_id}}" data-id="{{invitation.id}}" href="/dashboard" role="button">Accept {{invitation.group.name}} Invite</button>
+            <div id="invitation" class="card" style="width: 18rem;">
+                <button class="btn btn-primary btn-sm btn-block" data-group="{{invitation.group_id}}"
+                    data-user="{{invitation.user_id}}" data-id="{{invitation.id}}" href="/dashboard"
+                    role="button">Accept {{invitation.group.name}} Invite</button>
             </div>
             {{/each}}
         </div>
     </div>
 
-        <div class="col-6 text-center"> 
-            <h1>Your Posts</h1>          
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                   
-                    {{#each posts as |post| }}
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>{{post.title}}</h2>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">{{post.content}}</p>
-                        </div>
-                        <div class="card-footer text-muted">
-                            <p>posted on {{format_date createdAt}}</p>
-                        </div>
+    <div class="col-6 text-center">
+        <h1>Your Posts</h1>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+
+                {{#each posts as |post| }}
+                <div class="card">
+                    <div class="card-header">
+                        <h2>{{post.title}}</h2>
                     </div>
-                    {{/each}}
-                    
-                    
-
-
+                    <div class="card-body">
+                        <p class="card-text">{{post.content}}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <p>posted on {{format_date createdAt}}</p>
+                    </div>
                 </div>
+                {{/each}}
+
+
+
+
             </div>
-        </div>
-        <div class="col">
-          
-            <h2>Your Groups</h2>
-            {{#each memberships as |group| }}
-            <div class="card" style="width: 18rem;">
-                <a class="btn btn-primary" href="/group/{{group.id}}" role="button">{{group.name}}</a>
-            </div>
-            
-            {{/each}}
         </div>
     </div>
+    <div class="col">
+
+        <h2>Your Groups</h2>
+        {{#each memberships as |group| }}
+        <div class="card" style="width: 18rem;">
+            <a class="btn btn-primary" href="/group/{{group.id}}" role="button">{{group.name}}</a>
+        </div>
+
+        {{/each}}
+        <div class="col">
+            <form data-id="{{id}}" class="form new-group">
+                <div class="form-group">
+                    <label for="group-title"></label>
+                    <input class="form-input" type="text" placeholder="Title" id="group-title" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 </div>
 
 <script src="./js/dashboard.js"></script>
