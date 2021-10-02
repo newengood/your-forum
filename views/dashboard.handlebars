@@ -1,27 +1,30 @@
-<div class="d-flex justify-content-between">
+<div class="d-flex mx-3 text-center">
     <div class="row">
         <div class="col justify-content-start" >
             <h2>Notifications</h2>
             {{#each invitations as |invitation| }}
             <div id ="invitation" class="card" style="width: 18rem;">
-                <button class="btn btn-primary btn-sm btn-block" data-group ="{{invitation.group_id}}" data-user ="{{invitation.user_id}}" data-id="{{invitation.id}}" href="/dashboard" role="button">Accept Invite</button>
+                <button class="btn btn-primary btn-sm btn-block" data-group ="{{invitation.group_id}}" data-user ="{{invitation.user_id}}" data-id="{{invitation.id}}" href="/dashboard" role="button">Accept {{invitation.group.name}} Group Invite</button>
             </div>
             {{/each}}
         </div>
-        <div class="col-6">
+    </div>
+
+        <div class="col-6 text-center"> 
+            <h1>Your Posts</h1>          
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4">Your Posts</h1>
+                   
                     {{#each posts as |post| }}
                     <div class="card">
                         <div class="card-header">
                             <h2>{{post.title}}</h2>
                         </div>
-
                         <div class="card-body">
-
                             <p class="card-text">{{post.content}}</p>
-
+                        </div>
+                        <div class="card-footer text-muted">
+                            <p>posted on {{format_date createdAt}}</p>
                         </div>
                     </div>
                     {{/each}}
@@ -36,12 +39,10 @@
           
             <h2>Your Groups</h2>
             {{#each memberships as |group| }}
-            <div class="row mb4">
-                <div class="col-md-5">
-                    <button type="button" class="btn btn-primary"><a class="text-white"
-                            href="/group/{{group.id}}">{{group.name}}</a></button>
-                </div>
+            <div class="card" style="width: 18rem;">
+                <a class="btn btn-primary" href="/group/{{group.id}}" role="button">{{group.name}}</a>
             </div>
+            
             {{/each}}
         </div>
     </div>
