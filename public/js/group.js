@@ -68,6 +68,35 @@ const topicButtonHandler = async (group_id, topic_id) => {
 	}
 };
 
+const topicFormHandler = async (event) => {
+	event.preventDefault();
+
+	const name = document.querySelector('#new-topic').value.trim();
+	const group_id = event.target.getAttribute('data-id');
+
+	if (name && group_id) {
+		try {
+			const response = await fetch(`/api/topics/`, {
+				method: 'POST',
+				body: JSON.stringify({ name, group_id }),
+				headers: { 'Content-Type': 'application/json' },
+			});
+			if (response.ok) {
+				document.location.reload();
+			}
+		} catch (err) {
+			console.error(err);
+		}
+	}
+};
+
 document
 	.querySelector('.new-invitation')
 	.addEventListener('submit', invitationFormHandler);
+
+document
+	.querySelector('.new-topic')
+	.addEventListener('submit', topicFormHandler);
+
+
+	
