@@ -100,10 +100,12 @@ router.get('/dashboard', withAuth, async (req, res) => {
 			attributes: { exclude: ['password'] },
 			include: {
 				all: true,
+				nested: true
 			},
 		});
 
 		const user = userData.get({ plain: true });
+		console.log(user);
 
 		res.render('dashboard', {
 			...user,
