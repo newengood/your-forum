@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Invitation, Group, UserGroup } = require('../../models');
+const { User, Invitation, Group, UserGroup, Post } = require('../../models');
 
 /* route to register a new user
   Request: { username, email, password } */
@@ -66,9 +66,6 @@ router.get('/test', async (req, res) => {
 		const users = await User.findAll({
 			include: [
 				{
-					all: true,
-				},
-				{
 					model: Invitation,
 					include: [
 						{
@@ -76,6 +73,16 @@ router.get('/test', async (req, res) => {
 							attributes: ['name'],
 						},
 					],
+				},
+				{
+					model: Post,
+					attributes: ['title', 'content', 'createdAt'],
+				},
+				{
+					model: Group,
+					as: 'memberships',
+					through: UserGroup,
+					attributes: ['id', 'name'],
 				},
 			],
 		});
