@@ -17,6 +17,17 @@ router.post('/', withAuth, async (req, res) => {
 	}
 });
 
+/* route to update an existing post
+  Request: { title, content } */
+router.put('/:id', withAuth, async ({ params, body }, res) => {
+	try {
+		const postData = await Post.update(body, { where: { id: params.id } });
+		res.status(200).json(postData);
+	} catch (err) {
+		res.status(400).json(err);
+	}
+});
+
 // route to delete post
 router.delete('/:id', withAuth, async (req, res) => {
 	try {
@@ -55,6 +66,15 @@ router.get('/test', async (req, res) => {
 		});
 
 		res.status(200).json(posts);
+	} catch (err) {
+		res.status(400).json(err);
+	}
+});
+
+router.put('/test/:id', async ({ params, body }, res) => {
+	try {
+		const postData = await Post.update(body, { where: { id: params.id } });
+		res.status(200).json(postData);
 	} catch (err) {
 		res.status(400).json(err);
 	}
