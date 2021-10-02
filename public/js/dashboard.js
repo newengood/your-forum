@@ -29,7 +29,33 @@ const invitationHandler = async (event) => {
   }
 };
 
+const newGroupHandler = async (event) => {
+  event.preventDefault();
+
+  const name = document.querySelector('#group-title').value.trim();
+
+	if (name) {
+		try {
+			const response = await fetch(`/api/groups`, {
+				method: 'POST',
+        body: JSON.stringify({ name }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+			});
+      if (response.ok) {
+        document.location.reload();
+      }
+		} catch (err) {
+			console.error(err);
+		}
+	}
+};
+
 document
   .querySelector('#invitation')
   .addEventListener('click', invitationHandler);
 
+document
+  .querySelector('.new-group')
+  .addEventListener('submit', newGroupHandler);
