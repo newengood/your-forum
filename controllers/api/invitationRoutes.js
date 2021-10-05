@@ -34,7 +34,7 @@ router.post('/', withAuth, async ({ body }, res) => {
 			{www.google.com}`,
 			`You've been invited to join the '${group.name}' group. Click the following link to accept the invitation.
 
-			<a href='www.google.com'>Your Forum Dashboard</a>`
+			<a href='https://pacific-journey-91002.herokuapp.com/'>Your Forum Dashboard</a>`
 		);
 
 		res.status(200).json(newInvite);
