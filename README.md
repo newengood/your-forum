@@ -21,7 +21,7 @@
 
 ## Usage
 
-[Your Forum](https://pacific-journey-91002.herokuapp.com/)
+[Your Forum](https://tranquil-lowlands-18120.herokuapp.com/)
 
 ![usage](./assets/usage.png)
 
