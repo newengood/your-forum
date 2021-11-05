@@ -1,5 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-# Group Project 2
+# Your Forum
 
 ## Table of Contents
   
@@ -20,6 +20,8 @@
 * Clone the repository, install dependencies using command "npm i", then start server using command "npm start"
 
 ## Usage
+
+[Your Forum](https://pacific-journey-91002.herokuapp.com/)
 
 ![usage](./assets/usage.png)
 
